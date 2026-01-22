@@ -11,7 +11,7 @@ If two cryptocurrencies behave very similarly in terms of price dynamics, volati
 
 The goal is to systematically detect such similarities and group cryptocurrencies into clusters based on historical performance characteristics.
 
----
+
 
 ## Motivation
 
@@ -28,7 +28,7 @@ By classifying similar cryptocurrencies, investors can:
 - Reduce unnecessary portfolio churn
 - Make more informed rebalancing and rotation decisions
 
----
+
 
 ## Objectives
 - Measure similarity between cryptocurrencies based on historical performance characteristics.
@@ -38,7 +38,7 @@ By classifying similar cryptocurrencies, investors can:
 > **Note:**  
 > This is **not a price-prediction system**, but a **decision-support framework** focused on minimizing unnecessary trading and improving portfolio efficiency.
 
----
+
 
 ## Scope of Similarity
 Similarity is evaluated using performance-related characteristics such as:
@@ -51,7 +51,7 @@ Similarity is evaluated using performance-related characteristics such as:
 
 Two cryptocurrencies are considered similar if their performance metrics and time-series behavior are statistically and economically close over a defined time horizon.
 
----
+
 
 ## Universe Selection (Which Cryptos to Analyze)
 Given the existence of ~14,000 cryptocurrencies, the project focuses on a filtered and economically meaningful universe.
@@ -66,14 +66,13 @@ Selection criteria include:
 
 This filtering ensures robustness and interpretability of similarity results.
 
----
 
 ## Key Assumption
 If two cryptocurrencies belong to the same similarity cluster, reallocating capital between them is unlikely to materially improve portfolio performance **after accounting for transaction costs and execution frictions**.
 
 This enables the system to recommend **“do not switch”** decisions unless assets belong to sufficiently different performance clusters.
 
----
+
 
 ## Expected Outcomes
 - Clear grouping of cryptocurrencies based on performance similarity
@@ -82,7 +81,7 @@ This enables the system to recommend **“do not switch”** decisions unless as
   - *“Asset A and Asset B are highly similar — switching is not cost-inefficient.”*
   - *“Asset C belongs to a different performance cluster — switching may improve diversification.”*
 
----
+
 
 ## Use Cases
 - Crypto portfolio rebalancing strategies
@@ -90,7 +89,7 @@ This enables the system to recommend **“do not switch”** decisions unless as
 - Research on crypto market structure and asset redundancy
 - Decision support for medium- and long-term investors
 
----
+
 
 ## Non-Goals
 This project does **not** aim to:
@@ -100,7 +99,7 @@ This project does **not** aim to:
 
 It focuses strictly on **similarity detection and classification** to reduce inefficient trading behavior.
 
----
+
 
 ## Summary
 This project addresses a practical inefficiency in crypto investing: switching between assets that behave almost identically. By clustering cryptocurrencies based on performance similarity and restricting analysis to economically meaningful assets, the framework helps investors reduce unnecessary trades, minimize costs, and make more rational portfolio decisions.
