@@ -4,7 +4,7 @@ This document outlines a **structured, research-oriented framework** for selecti
 
 The goal is to reduce noise, ensure data integrity, and preserve **economic and sectoral relevance**, resulting in a manageable and statistically robust token universe.
 
----
+
 
 ## Overview
 
@@ -16,7 +16,7 @@ The goal is to reduce noise, ensure data integrity, and preserve **economic and 
   - Portfolio construction & rotation
   - Regime / sector behavior analysis
 
----
+
 
 ## Part 1: Multi-Stage Filtering Logic
 
@@ -24,7 +24,7 @@ The goal is to reduce noise, ensure data integrity, and preserve **economic and 
 
 These filters enforce **minimum economic and data quality standards**.
 
----
+
 
 ### 1.1 Market Capitalization Threshold
 
@@ -39,7 +39,7 @@ These filters enforce **minimum economic and data quality standards**.
 **Impact**
 - ~14,000 → **500–800 tokens**
 
----
+
 
 ### 1.2 Liquidity Requirements
 
@@ -60,7 +60,7 @@ These filters enforce **minimum economic and data quality standards**.
 **Impact**
 - **300–500 tokens**
 
----
+
 
 ### 1.3 Data Continuity
 
@@ -76,7 +76,7 @@ These filters enforce **minimum economic and data quality standards**.
 **Impact**
 - **250–400 tokens**
 
----
+
 
 ### 1.4 Exchange Quality Filter
 
@@ -94,7 +94,7 @@ These filters enforce **minimum economic and data quality standards**.
 **Impact**
 - **200–300 tokens**
 
----
+
 
 ## Stage 2: Soft Filters (Quality Refinement)
 
@@ -112,7 +112,7 @@ These filters improve **data cleanliness and behavioral realism**.
 **Rationale**
 - Signals abandoned or inactive projects
 
----
+
 
 ### 2.2 Outlier Removal
 
@@ -125,7 +125,7 @@ These filters improve **data cleanliness and behavioral realism**.
 - Often caused by bad data, forks, or manipulation  
 - Skews similarity metrics
 
----
+
 
 ### 2.3 Recency Filter
 
@@ -135,11 +135,11 @@ These filters improve **data cleanliness and behavioral realism**.
 **Rationale**
 - Confirms active market participation
 
----
+
 
 ## Stage 3: Economic Relevance (Final ~100–150 Tokens)
 
----
+
 
 ### 3.1 Sector Representation
 
@@ -161,7 +161,7 @@ These filters improve **data cleanliness and behavioral realism**.
 - Removes redundant assets  
 - Improves clustering resolution
 
----
+
 
 ## Part 2: Sector-Based Selection Logic
 
@@ -175,7 +175,7 @@ Crypto sectors differ in:
 
 Sector grouping ensures similarity analysis captures **structural behavior**, not just size or liquidity effects.
 
----
+
 
 ## Core Sectors to Include
 
@@ -192,7 +192,7 @@ Sector grouping ensures similarity analysis captures **structural behavior**, no
 - Top **10–15** by market cap  
 - ≥ 6 months of history
 
----
+
 
 ### 2. Layer-2 Scaling Solutions
 
@@ -206,7 +206,7 @@ Sector grouping ensures similarity analysis captures **structural behavior**, no
 **Selection**
 - Top **5–8** by TVL or market cap
 
----
+
 
 ### 3. DeFi (Decentralized Finance)
 
@@ -220,7 +220,7 @@ Sector grouping ensures similarity analysis captures **structural behavior**, no
 **Selection**
 - Top **10–12** by TVL or protocol revenue
 
----
+
 
 ### 4. Infrastructure & Oracles
 
@@ -234,7 +234,7 @@ Sector grouping ensures similarity analysis captures **structural behavior**, no
 **Selection**
 - **5–7** by market cap & usage
 
----
+
 
 ### 5. Exchange & CEX Tokens
 
@@ -248,7 +248,7 @@ Sector grouping ensures similarity analysis captures **structural behavior**, no
 **Selection**
 - **3–5** by exchange trading volume
 
----
+
 
 ### 6. Privacy & Alternative Consensus
 
@@ -261,7 +261,7 @@ Sector grouping ensures similarity analysis captures **structural behavior**, no
 **Selection**
 - **3–5** established tokens
 
----
+
 
 ### 7. Memecoins & Community-Driven (Optional)
 
@@ -275,7 +275,7 @@ Sector grouping ensures similarity analysis captures **structural behavior**, no
 **Selection**
 - Top **3–5** by market cap (if included)
 
----
+
 
 ### 8. Bitcoin & Stablecoins (Anchors)
 
@@ -287,11 +287,11 @@ Sector grouping ensures similarity analysis captures **structural behavior**, no
 - BTC: market leader, unique dynamics  
 - Stablecoins: zero-volatility baseline
 
----
+
 
 ## Part 3: Practical Implementation Steps
 
----
+
 
 ### Step 1: Data Source Selection
 
@@ -305,7 +305,7 @@ Recommended APIs:
 - CoinGecko → filtering & sector tags  
 - CryptoCompare → historical price data
 
----
+
 
 ### Step 2: Initial Data Pull
 
@@ -319,7 +319,7 @@ Derived metrics:
 - `avg_daily_volume (30d)`
 - `data_completeness (%)`
 
----
+
 
 ### Step 3: Apply Filters Sequentially
 
@@ -331,7 +331,7 @@ Derived metrics:
    - Remove scams
    - Remove most stablecoins (keep USDT/USDC only)
 
----
+
 
 ### Step 4: Sector Assignment
 
@@ -342,7 +342,7 @@ Derived metrics:
 **Target universe**
 - **80–120 tokens**
 
----
+
 
 ### Step 5: Download Historical Data
 
@@ -355,7 +355,7 @@ Derived metrics:
 **Frequency**
 - Daily (hourly adds complexity without major benefit)
 
----
+
 
 ## Final Filtered Universe Summary
 
@@ -368,7 +368,7 @@ Derived metrics:
 | Exchange filter | ~150–200 | Tier-1 exchanges |
 | Sector selection | **80–120** | Balanced, diverse universe |
 
----
+
 
 ## Key Outcome
 
@@ -382,4 +382,4 @@ Your final universe is:
 
 This universe is **ideal for similarity analysis, clustering, and regime detection**—producing results that are **actionable, interpretable, and reliable**.
 
----
+
