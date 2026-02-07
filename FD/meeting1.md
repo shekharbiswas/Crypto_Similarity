@@ -1,0 +1,2 @@
+- Get all Crypto data from FMP (write algo for that)
+- 
