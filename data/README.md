@@ -41,7 +41,7 @@ Comprehensive data collection with historical OHLCV and advanced metrics.
 
 **Best for:** Statistical analysis, modeling, research
 
-## 🚀 Quick Start
+## Guide start
 
 ### Installation
 
@@ -59,7 +59,7 @@ python crypto_data_fetcher.py
 python advanced_crypto_collector.py
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Basic Collector (`crypto_data_fetcher.py`)
 
