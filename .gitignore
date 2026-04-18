@@ -1,2 +1,10 @@
-outputs/
-*.csv
+*.*csv
+*.*json
+*.*xlsx
+*.*log
+*.*tmp
+*.*bak
+*.*pdf
+*.*docx
+*.*pptx
+*.*zip
