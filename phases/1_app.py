@@ -20,6 +20,16 @@ from scipy import stats as scipy_stats
 import gdown
 import os
 
+import traceback
+import sys
+
+try:
+    pass  # your app runs below
+except Exception as e:
+    st.error(f"App crashed: {e}")
+    st.code(traceback.format_exc())
+    st.stop()
+    
 # ══════════════════════════════════════════════════════════════
 #  PAGE CONFIG
 # ══════════════════════════════════════════════════════════════
