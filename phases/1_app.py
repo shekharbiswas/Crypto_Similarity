@@ -649,7 +649,7 @@ def forward_return_in_regime(df_pd: pd.DataFrame, coin_id: str,
 #  LOAD
 # ══════════════════════════════════════════════════════════════
 try:
-    df = load_data("../data/crypto_with_indicators.csv")
+    df = load_data("17fdjZTRpba-ubYlvAkE5NmA0f3_e715r")
     s  = build_summary(df)
 except FileNotFoundError:
     st.error("❌  `crypto_with_indicators.csv` not found — check ../data/ path.")
