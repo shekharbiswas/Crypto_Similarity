@@ -33,10 +33,16 @@ st.set_page_config(
 # ══════════════════════════════════════════════════════════════
 #  GLOBAL STYLES
 # ══════════════════════════════════════════════════════════════
+
+st.markdown("""
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;700;800&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+""", unsafe_allow_html=True)
+
+
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;700;800&family=Open+Sans:wght@400;600;700;800&display=swap');
-
 :root {
     --bg:       #0a0e1a;
     --grid:     #0f1629;
@@ -116,18 +122,18 @@ header { visibility: hidden; }
     font-size: 11px !important;
     text-transform: uppercase;
     letter-spacing: 1px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;        /* ← changed */
+    overflow: visible;          /* ← changed */
+    line-height: 1.3;           /* ← added */
 }
 [data-testid="stMetricValue"] {
     color: var(--accent) !important;
     font-family: 'Syne', sans-serif !important;
-    font-size: 22px !important;
+    font-size: 18px !important;
     font-weight: 700 !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: visible;
+    word-break: break-word; 
 }
 [data-testid="stMetricDelta"] { font-size: 16px !important; }
 [data-testid="stMetric"] { min-height: 110px !important; }
