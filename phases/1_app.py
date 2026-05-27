@@ -238,7 +238,7 @@ def load_data(file_id: str = "17fdjZTRpba-ubYlvAkE5NmA0f3_e715r"):
     
     if not os.path.exists(output_path):
         url = f"https://drive.google.com/uc?id={file_id}"
-        gdown.download(url, output_path, quiet=False)
+        gdown.download(url, output_path, quiet=False, fuzzy=True)
 
     df = (
         pl.read_csv(output_path, try_parse_dates=True)
