@@ -19,6 +19,7 @@ from plotly.subplots import make_subplots
 from scipy import stats as scipy_stats
 import gdown
 import os
+import tempfile  
 
 
 
@@ -233,7 +234,7 @@ def title_cfg(text, size=17):
 @st.cache_data(show_spinner="⏳ Downloading dataset from Drive... (~1-2 mins on first load)")
 def load_data(file_id: str = "17fdjZTRpba-ubYlvAkE5NmA0f3_e715r"):
     
-    output_path = "/tmp/crypto_with_indicators.csv"
+    output_path = os.path.join(tempfile.gettempdir(), "crypto_with_indicators.csv")
     
     if not os.path.exists(output_path):
         url = f"https://drive.google.com/uc?id={file_id}"
@@ -659,7 +660,7 @@ def forward_return_in_regime(df_pd: pd.DataFrame, coin_id: str,
 try:
     df = load_data("17fdjZTRpba-ubYlvAkE5NmA0f3_e715r")
     s  = build_summary(df)
-    
+
 except Exception as e:
     st.error(f"❌ Error loading data: {type(e).__name__}: {e}")
     import traceback
