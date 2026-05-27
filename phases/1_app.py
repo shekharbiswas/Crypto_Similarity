@@ -222,10 +222,17 @@ def title_cfg(text, size=17):
 # ══════════════════════════════════════════════════════════════
 #  DATA LOADING  (cached)
 # ══════════════════════════════════════════════════════════════
-@st.cache_data(show_spinner="Loading crypto data...")
-def load_data(path: str = "../data/crypto_with_indicators.csv"):
+@st.cache_data(show_spinner="⏳ Downloading dataset from Drive... (~1-2 mins on first load)")
+def load_data(file_id: str = "17fdjZTRpba-ubYlvAkE5NmA0f3_e715r"):
+    
+    output_path = "/tmp/crypto_with_indicators.csv"
+    
+    if not os.path.exists(output_path):
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, output_path, quiet=False)
+
     df = (
-        pl.read_csv(path, try_parse_dates=True)
+        pl.read_csv(output_path, try_parse_dates=True)
         .with_columns([
             pl.col("date").cast(pl.Date),
             pl.col("close").cast(pl.Float64),
