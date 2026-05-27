@@ -996,15 +996,15 @@ with tab1:
                 "1Y%":"{:.1f}","3Y%":"{:.1f}","4Y%":"{:.1f}","All%":"{:.1f}",
             }, na_rep="—")
         )
-        st.dataframe(styled, width='stretch', height=420)
+        st.dataframe(styled, use_container_width=True, height=420)
 
         c_w, c_l = st.columns(2)
         with c_w:
             st.markdown(f"<div style='font-size:11px;color:{ACCENT};margin-bottom:6px;text-transform:uppercase;letter-spacing:1px'>🚀 Top 5  ·  {period_sel}</div>", unsafe_allow_html=True)
-            st.dataframe(disp.head(5)[["Symbol","Tier",active_col_display]], width='stretch', hide_index=False, height=210)
+            st.dataframe(disp.head(5)[["Symbol","Tier",active_col_display]], use_container_width=True, hide_index=False, height=210)
         with c_l:
             st.markdown(f"<div style='font-size:11px;color:{ACCENT2};margin-bottom:6px;text-transform:uppercase;letter-spacing:1px'>💀 Bottom 5  ·  {period_sel}</div>", unsafe_allow_html=True)
-            st.dataframe(disp.tail(5)[["Symbol","Tier",active_col_display]], width='stretch', hide_index=False, height=210)
+            st.dataframe(disp.tail(5)[["Symbol","Tier",active_col_display]], use_container_width=True, hide_index=False, height=210)
 
 
 # ──────────────────────────────────────────────────────────────
@@ -1371,7 +1371,7 @@ with tab3:
                              "RSI","MACD","MACD_Signal","ADX","BB_Percent","surge_score"]
                 avail = [c for c in show_cols if c in coin_df.columns]
                 show_df = coin_df[avail].sort_values("date", ascending=False).reset_index(drop=True)
-                st.dataframe(show_df, width='stretch', height=350)
+                st.dataframe(show_df, use_container_width=True, height=350)
 
 
 # ──────────────────────────────────────────────────────────────
@@ -1805,7 +1805,7 @@ with tab4:
             )
             .format({"Pearson r":"{:.4f}","p-value":"{:.4f}","Same-Dir %":"{:.1f}%"})
         )
-        st.dataframe(styled_sim, width='stretch', height=360)
+        st.dataframe(styled_sim, use_container_width=True, height=360)
 
 
 # ──────────────────────────────────────────────────────────────
@@ -2054,7 +2054,7 @@ with tab5:
                 "BB%":"{:.2f}","Aroon Osc":"{:.1f}","Surge Score":"{:.2f}",
             }, na_rep="—")
         )
-        st.dataframe(styled_reg, width='stretch', height=360)
+        st.dataframe(styled_reg, use_container_width=True, height=360)
 
 
 # ──────────────────────────────────────────────────────────────
@@ -2296,7 +2296,7 @@ with tab6:
                     {c: "{:.2f}" for c in show_fwd.columns if "Ret" in c or "Score" in c},
                     na_rep="—"
                 ),
-                width='stretch', height=380,
+                use_container_width=True, height=380,
             )
 
 
