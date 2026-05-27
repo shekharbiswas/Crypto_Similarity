@@ -20,16 +20,8 @@ from scipy import stats as scipy_stats
 import gdown
 import os
 
-import traceback
-import sys
 
-try:
-    pass  # your app runs below
-except Exception as e:
-    st.error(f"App crashed: {e}")
-    st.code(traceback.format_exc())
-    st.stop()
-    
+
 # ══════════════════════════════════════════════════════════════
 #  PAGE CONFIG
 # ══════════════════════════════════════════════════════════════
@@ -667,8 +659,11 @@ def forward_return_in_regime(df_pd: pd.DataFrame, coin_id: str,
 try:
     df = load_data("17fdjZTRpba-ubYlvAkE5NmA0f3_e715r")
     s  = build_summary(df)
-except FileNotFoundError:
-    st.error("❌  `crypto_with_indicators.csv` not found — check ../data/ path.")
+    
+except Exception as e:
+    st.error(f"❌ Error loading data: {type(e).__name__}: {e}")
+    import traceback
+    st.code(traceback.format_exc())
     st.stop()
 
 TIER_ORDER      = ["mega","large","mid","small","micro"]
