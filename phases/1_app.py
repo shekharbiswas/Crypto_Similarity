@@ -933,7 +933,7 @@ with tab1:
         xaxis=dict(title=dict(text=f"Daily Volatility  (σ, clipped @{vol_clip})", font=dict(color=MUTED)), **AXIS),
         yaxis=dict(title=dict(text=f"Return %  —  {period_sel}", font=dict(color=MUTED)), **AXIS),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
     active_col_display = f"{period_sel}%"
     tiers_label = ", ".join(t.upper() for t in selected_tiers) if selected_tiers else "None"
@@ -996,15 +996,15 @@ with tab1:
                 "1Y%":"{:.1f}","3Y%":"{:.1f}","4Y%":"{:.1f}","All%":"{:.1f}",
             }, na_rep="—")
         )
-        st.dataframe(styled, use_container_width=True, height=420)
+        st.dataframe(styled, width='stretch', height=420)
 
         c_w, c_l = st.columns(2)
         with c_w:
             st.markdown(f"<div style='font-size:11px;color:{ACCENT};margin-bottom:6px;text-transform:uppercase;letter-spacing:1px'>🚀 Top 5  ·  {period_sel}</div>", unsafe_allow_html=True)
-            st.dataframe(disp.head(5)[["Symbol","Tier",active_col_display]], use_container_width=True, hide_index=False, height=210)
+            st.dataframe(disp.head(5)[["Symbol","Tier",active_col_display]], width='stretch', hide_index=False, height=210)
         with c_l:
             st.markdown(f"<div style='font-size:11px;color:{ACCENT2};margin-bottom:6px;text-transform:uppercase;letter-spacing:1px'>💀 Bottom 5  ·  {period_sel}</div>", unsafe_allow_html=True)
-            st.dataframe(disp.tail(5)[["Symbol","Tier",active_col_display]], use_container_width=True, hide_index=False, height=210)
+            st.dataframe(disp.tail(5)[["Symbol","Tier",active_col_display]], width='stretch', hide_index=False, height=210)
 
 
 # ──────────────────────────────────────────────────────────────
@@ -1107,7 +1107,7 @@ with tab2:
     for ann in fig3.layout.annotations:
         ann.font.color = ACCENT
         ann.font.size  = 13
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig3, width='stretch')
 
     st.markdown("---")
     st.markdown(f"<div style='font-size:13px;color:{ACCENT};margin-bottom:12px'>◈  Return Distribution by Tier  ·  {period_sel}</div>", unsafe_allow_html=True)
@@ -1134,7 +1134,7 @@ with tab2:
         showlegend=False,
     )
     fig4.add_hline(y=0, line=dict(color=MUTED, width=1, dash="dot"))
-    st.plotly_chart(fig4, use_container_width=True)
+    st.plotly_chart(fig4, width='stretch')
 
 
 # ──────────────────────────────────────────────────────────────
@@ -1319,7 +1319,7 @@ with tab3:
                                    tickfont=dict(color=MUTED, family="JetBrains Mono"))
             fig_coin.update_yaxes(gridcolor="#1a2540", zerolinecolor="#1a2540",
                                    tickfont=dict(color=MUTED, family="JetBrains Mono"))
-            st.plotly_chart(fig_coin, use_container_width=True)
+            st.plotly_chart(fig_coin, width='stretch')
 
             # ── Regime State Cards ────────────────────────────────────
             st.markdown(
@@ -1371,7 +1371,7 @@ with tab3:
                              "RSI","MACD","MACD_Signal","ADX","BB_Percent","surge_score"]
                 avail = [c for c in show_cols if c in coin_df.columns]
                 show_df = coin_df[avail].sort_values("date", ascending=False).reset_index(drop=True)
-                st.dataframe(show_df, use_container_width=True, height=350)
+                st.dataframe(show_df, width='stretch', height=350)
 
 
 # ──────────────────────────────────────────────────────────────
@@ -1548,7 +1548,7 @@ with tab4:
         yaxis=axis_tf(color=TEXT, size=12),
         showlegend=False,
     )
-    st.plotly_chart(fig_bar, use_container_width=True)
+    st.plotly_chart(fig_bar, width='stretch')
 
     st.markdown("---")
 
@@ -1610,7 +1610,7 @@ with tab4:
         xaxis=dict(**AXIS, title=dict(text="Date", font=dict(color=MUTED))),
         yaxis=dict(**AXIS, title=dict(text="Indexed Price (base = 100)", font=dict(color=MUTED))),
     )
-    st.plotly_chart(fig_ov, use_container_width=True)
+    st.plotly_chart(fig_ov, width='stretch')
 
     st.markdown("---")
 
@@ -1673,7 +1673,7 @@ with tab4:
         yaxis=dict(**AXIS, title=dict(text="Pearson r  (90d rolling)", font=dict(color=MUTED)),
                    range=[-1.1, 1.1]),
     )
-    st.plotly_chart(fig_roll, use_container_width=True)
+    st.plotly_chart(fig_roll, width='stretch')
 
     # ── Seasonal heatmaps ─────────────────────────────────────
     if show_seasonal:
@@ -1732,7 +1732,7 @@ with tab4:
         with sh_col1:
             fig_s_anchor = render_seasonal_heatmap(anchor_id, f"◈  {anchor_symbol}  ·  Monthly Returns")
             if fig_s_anchor:
-                st.plotly_chart(fig_s_anchor, use_container_width=True)
+                st.plotly_chart(fig_s_anchor, width='stretch')
             else:
                 st.info(f"No seasonal data for {anchor_symbol}.")
 
@@ -1744,7 +1744,7 @@ with tab4:
                 f"◈  {best_sym}  ·  Monthly Returns  (r={best_match['correlation']:.3f})",
             )
             if fig_s_best:
-                st.plotly_chart(fig_s_best, use_container_width=True)
+                st.plotly_chart(fig_s_best, width='stretch')
             else:
                 st.info(f"No seasonal data for {best_sym}.")
 
@@ -1785,7 +1785,7 @@ with tab4:
                 xaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#1a2540"),
                 yaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#1a2540", autorange="reversed"),
             )
-            st.plotly_chart(fig_diff, use_container_width=True)
+            st.plotly_chart(fig_diff, width='stretch')
 
     # ── Full similarity table ─────────────────────────────────
     st.markdown("---")
@@ -1805,7 +1805,7 @@ with tab4:
             )
             .format({"Pearson r":"{:.4f}","p-value":"{:.4f}","Same-Dir %":"{:.1f}%"})
         )
-        st.dataframe(styled_sim, use_container_width=True, height=360)
+        st.dataframe(styled_sim, width='stretch', height=360)
 
 
 # ──────────────────────────────────────────────────────────────
@@ -1960,7 +1960,7 @@ with tab5:
         yaxis=axis_tf(color=TEXT, size=12),
         showlegend=False,
     )
-    st.plotly_chart(fig_reg, use_container_width=True)
+    st.plotly_chart(fig_reg, width='stretch')
 
     # ── Feature radar ─────────────────────────────────────────
     st.markdown("---")
@@ -2031,7 +2031,7 @@ with tab5:
         ),
         margin=dict(t=60, b=30, l=60, r=60),
     )
-    st.plotly_chart(fig_radar, use_container_width=True)
+    st.plotly_chart(fig_radar, width='stretch')
 
     # ── Full regime table ─────────────────────────────────────
     st.markdown("---")
@@ -2054,7 +2054,7 @@ with tab5:
                 "BB%":"{:.2f}","Aroon Osc":"{:.1f}","Surge Score":"{:.2f}",
             }, na_rep="—")
         )
-        st.dataframe(styled_reg, use_container_width=True, height=360)
+        st.dataframe(styled_reg, width='stretch', height=360)
 
 
 # ──────────────────────────────────────────────────────────────
@@ -2212,7 +2212,7 @@ with tab6:
             yaxis=dict(**AXIS, title=dict(text="Return %", font=dict(color=MUTED))),
             showlegend=False,
         )
-        st.plotly_chart(fig_box, use_container_width=True)
+        st.plotly_chart(fig_box, width='stretch')
 
         # ── Surge score scatter ───────────────────────────────
         if "surge_score" in similar_hist.columns and "Next_5d_Return" in similar_hist.columns:
@@ -2274,7 +2274,7 @@ with tab6:
                 legend=dict(bgcolor="rgba(0,0,0,0.6)", bordercolor="#1e2d45",
                             borderwidth=1, font=dict(size=11)),
             )
-            st.plotly_chart(fig_sc, use_container_width=True)
+            st.plotly_chart(fig_sc, width='stretch')
 
         # ── Raw matched dates table ───────────────────────────
         with st.expander(
@@ -2296,7 +2296,7 @@ with tab6:
                     {c: "{:.2f}" for c in show_fwd.columns if "Ret" in c or "Score" in c},
                     na_rep="—"
                 ),
-                use_container_width=True, height=380,
+                width='stretch', height=380,
             )
 
 
