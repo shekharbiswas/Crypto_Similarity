@@ -71,26 +71,14 @@ html, body, [data-testid="stAppViewContainer"] {
     border-right: 1px solid var(--border) !important;
 }
 
-[data-testid="stHeader"] { background: transparent !important; }
-header { visibility: hidden; }
+            
 
-[data-testid="stSidebarCollapsedControl"] {
-    visibility: visible !important;
-    display: flex !important;
-    opacity: 1 !important;
-    position: fixed !important;
-    top: 14px !important;
-    left: 10px !important;
-    z-index: 999999 !important;
-    background: #1e2d45 !important;
-    border-radius: 50% !important;
-    padding: 4px !important;
-}
-
-[data-testid="stSidebarCollapsedControl"] svg {
-    fill: #ffd60a !important;
-    width: 20px !important;
-    height: 20px !important;
+[data-testid="stHeader"] {
+    background: transparent !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
 }
             
 [data-testid="stHorizontalBlock"] {
