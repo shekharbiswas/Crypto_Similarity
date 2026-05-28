@@ -721,6 +721,14 @@ regime_snapshot = build_regime_snapshot(df, s)
 # ══════════════════════════════════════════════════════════════
 #  SIDEBAR
 # ══════════════════════════════════════════════════════════════
+
+period_sel     = "1Y"
+period_col     = PERIOD_COLS[period_sel]
+selected_tiers = list(available_tiers)          # all tiers on by default
+vol_clip       = 0.25
+ret_clip_max   = 2000
+
+
 if st.session_state.sidebar_open:
     with st.sidebar:
         st.markdown(
