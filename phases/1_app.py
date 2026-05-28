@@ -173,6 +173,14 @@ hr { border-color: var(--border) !important; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+            
+[data-testid="collapsedControl"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #00f5d4 !important;
+}
+            
 </style>
 """, unsafe_allow_html=True)
 
