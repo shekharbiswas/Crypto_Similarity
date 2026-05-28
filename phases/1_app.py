@@ -195,36 +195,7 @@ hr { border-color: var(--border) !important; }
 """, unsafe_allow_html=True)
 
 
-# Fixed floating toggle — always visible top-left
-st.markdown("""
-<style>
-div[data-testid="stButton"][id="fixed-toggle"] > button {
-    position: fixed !important;
-    top: 12px !important;
-    left: 12px !important;
-    z-index: 999999 !important;
-    background: #1e2d45 !important;
-    border: 1px solid #00f5d4 !important;
-    color: #ffd60a !important;
-    border-radius: 8px !important;
-    padding: 4px 10px !important;
-    font-size: 18px !important;
-    min-height: 0 !important;
-    height: 36px !important;
-    line-height: 1 !important;
-}
-div[data-testid="stButton"][id="fixed-toggle"] > button:hover {
-    background: #00f5d4 !important;
-    color: #0a0e1a !important;
-}
-</style>
-""", unsafe_allow_html=True)
 
-col = st.columns([0.01, 0.99])
-with col[0]:
-    if st.button("☰", key="fixed-toggle"):
-        st.session_state.sidebar_open = not st.session_state.sidebar_open
-        st.rerun()
 
 # ══════════════════════════════════════════════════════════════
 #  PALETTE & HELPERS
