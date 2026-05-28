@@ -239,7 +239,7 @@ def title_cfg(text, size=17):
 @st.cache_data(show_spinner="⏳ Loading from HuggingFace... (first load ~30s)")
 def load_data():
     import datetime
-#    cutoff = datetime.date.today() - datetime.timedelta(days=365)
+    cutoff = datetime.date.today() - datetime.timedelta(days=365)
 
     df = (
         pl.scan_parquet("hf://datasets/shekharbiswas/crypto-indicators/crypto_with_indicators.parquet")
@@ -320,7 +320,7 @@ def load_data():
             pl.col("cap_tier").cast(pl.Utf8),
         ])
         .filter(pl.col("is_stablecoin") == False)
-#       .filter(pl.col("date") >= pl.lit(cutoff))
+        .filter(pl.col("date") >= pl.lit(cutoff))
         .sort(["coin_id", "date"])
         .collect()
     )
@@ -716,7 +716,8 @@ with st.sidebar:
     )
     period_sel = st.radio(
         label     = "period",
-        options   = list(PERIOD_COLS.keys()),
+        # options   = list(PERIOD_COLS.keys()),
+        options = ["1M", "3M", "6M", "1Y"],
         index     = 3,
         horizontal= True,
         label_visibility = "collapsed",
