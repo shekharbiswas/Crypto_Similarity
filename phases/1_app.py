@@ -35,8 +35,6 @@ st.set_page_config(
     initial_sidebar_state = "expanded",
 )
 
-if "sidebar_open" not in st.session_state:
-    st.session_state.sidebar_open = True
 
 # ══════════════════════════════════════════════════════════════
 #  GLOBAL STYLES
@@ -185,10 +183,12 @@ hr { border-color: var(--border) !important; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
             
 [data-testid="collapsedControl"] {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    color: #00f5d4 !important;
+    display: none !important;
+}
+[data-testid="stSidebar"][aria-expanded="false"] {
+    min-width: 18rem !important;
+    margin-left: 0 !important;
+    transform: none !important;
 }
             
 </style>
@@ -722,72 +722,61 @@ regime_snapshot = build_regime_snapshot(df, s)
 #  SIDEBAR
 # ══════════════════════════════════════════════════════════════
 
-period_sel     = "1Y"
-period_col     = PERIOD_COLS[period_sel]
-selected_tiers = list(available_tiers)          # all tiers on by default
-vol_clip       = 0.25
-ret_clip_max   = 2000
-
-
-if st.session_state.sidebar_open:
-    with st.sidebar:
-        st.markdown(
-            "<div style='font-family:\"Open Sans\",sans-serif;font-size:22px;"
-            "font-weight:800;color:#00f5d4;margin-bottom:4px'>◈ CRYPTO</div>"
-            "<div style='font-family:\"Open Sans\",sans-serif;font-size:22px;"
-            "font-weight:800;color:#e2e8f0;margin-bottom:20px'>INTELLIGENCE</div>",
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            f"<div style='font-size:11px;color:{MUTED};margin-bottom:24px'>"
-            f"{df['coin_id'].n_unique()} coins  ·  "
-            f"{df['date'].min()} → {df['date'].max()}"
-            f"</div>",
-            unsafe_allow_html=True,
-        )
-
-        st.markdown("---")
-        st.markdown(
-            f"<div style='font-size:11px;color:{MUTED};text-transform:uppercase;"
-            f"letter-spacing:1px;margin-bottom:8px'>Return Period</div>",
-            unsafe_allow_html=True,
-        )
-        period_sel = st.radio(
-            label     = "period",
-            # options   = list(PERIOD_COLS.keys()),
-            options = ["1M", "3M", "6M", "1Y"],
-            index     = 3,
-            horizontal= True,
-            label_visibility = "collapsed",
-        )
-        period_col = PERIOD_COLS[period_sel]
-
-        st.markdown("---")
-        st.markdown(
-            f"<div style='font-size:11px;color:{MUTED};text-transform:uppercase;"
-            f"letter-spacing:1px;margin-bottom:8px'>Cap Tiers</div>",
-            unsafe_allow_html=True,
-        )
-        selected_tiers = []
-        for t in available_tiers:
-            chk = st.checkbox(label=t.upper(), value=True, key=f"tier_{t}")
-            if chk:
-                selected_tiers.append(t)
-
-        st.markdown("---")
-        st.markdown(
-            f"<div style='font-size:11px;color:{MUTED};text-transform:uppercase;"
-            f"letter-spacing:1px;margin-bottom:8px'>Volatility Clip</div>",
-            unsafe_allow_html=True,
-        )
-        vol_clip = st.slider(
-            label="vol", min_value=0.05, max_value=0.50,
-            value=0.25, step=0.01, label_visibility="collapsed",
-        )
-        ret_clip_max = st.slider(
-            label="Max Return % clip", min_value=200, max_value=5000,
-            value=2000, step=100,
-        )
+with st.sidebar:
+    st.markdown(
+        "<div style='font-family:\"Open Sans\",sans-serif;font-size:22px;"
+        "font-weight:800;color:#00f5d4;margin-bottom:4px'>◈ CRYPTO</div>"
+        "<div style='font-family:\"Open Sans\",sans-serif;font-size:22px;"
+        "font-weight:800;color:#e2e8f0;margin-bottom:20px'>INTELLIGENCE</div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        f"<div style='font-size:11px;color:{MUTED};margin-bottom:24px'>"
+        f"{df['coin_id'].n_unique()} coins  ·  "
+        f"{df['date'].min()} → {df['date'].max()}"
+        f"</div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown("---")
+    st.markdown(
+        f"<div style='font-size:11px;color:{MUTED};text-transform:uppercase;"
+        f"letter-spacing:1px;margin-bottom:8px'>Return Period</div>",
+        unsafe_allow_html=True,
+    )
+    period_sel = st.radio(
+        label     = "period",
+        # options   = list(PERIOD_COLS.keys()),
+        options = ["1M", "3M", "6M", "1Y"],
+        index     = 3,
+        horizontal= True,
+        label_visibility = "collapsed",
+    )
+    period_col = PERIOD_COLS[period_sel]
+    st.markdown("---")
+    st.markdown(
+        f"<div style='font-size:11px;color:{MUTED};text-transform:uppercase;"
+        f"letter-spacing:1px;margin-bottom:8px'>Cap Tiers</div>",
+        unsafe_allow_html=True,
+    )
+    selected_tiers = []
+    for t in available_tiers:
+        chk = st.checkbox(label=t.upper(), value=True, key=f"tier_{t}")
+        if chk:
+            selected_tiers.append(t)
+    st.markdown("---")
+    st.markdown(
+        f"<div style='font-size:11px;color:{MUTED};text-transform:uppercase;"
+        f"letter-spacing:1px;margin-bottom:8px'>Volatility Clip</div>",
+        unsafe_allow_html=True,
+    )
+    vol_clip = st.slider(
+        label="vol", min_value=0.05, max_value=0.50,
+        value=0.25, step=0.01, label_visibility="collapsed",
+    )
+    ret_clip_max = st.slider(
+        label="Max Return % clip", min_value=200, max_value=5000,
+        value=2000, step=100,
+    )
 
 # ══════════════════════════════════════════════════════════════
 #  HEADER
@@ -852,9 +841,6 @@ k6.metric(f"Coins w/ {period_sel} data", f"{n_period}",
 
 st.markdown("<div style='margin-top:8px'></div>", unsafe_allow_html=True)
 
-if st.button("☰  Toggle Sidebar", key="sidebar_btn"):
-    st.session_state.sidebar_open = not st.session_state.sidebar_open
-    st.rerun()
 
 # ══════════════════════════════════════════════════════════════
 #  TABS
