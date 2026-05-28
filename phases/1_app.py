@@ -268,7 +268,7 @@ def load_data():
     latest_date = datetime.date.fromisoformat(str(_peek["date"][0])[:10])
 
     # Step 2 — go 1Y back from the DATA's latest date, not today
-    cutoff = latest_date - datetime.timedelta(days=365*3)
+    cutoff = latest_date - datetime.timedelta(days=365)
 
     df = (
         pl.scan_parquet("hf://datasets/shekharbiswas/crypto-indicators/crypto_with_indicators.parquet")
@@ -386,7 +386,8 @@ def build_summary(_df):
     )
 
     latest = _df["date"].max()
-    PERIODS = {"1M":30,"3M":90,"6M":180,"1Y":365,"3Y":365*3,"4Y":365*4}
+    # PERIODS = {"1M":30,"3M":90,"6M":180,"1Y":365,"3Y":365*3,"4Y":365*4}
+    PERIODS = {"1M":30,"3M":90,"6M":180,"1Y":365}
 
     coin_first = (
         _df.group_by("coin_id")
