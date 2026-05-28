@@ -1326,6 +1326,7 @@ with tab3:
             coin_name_full = coin_df["name"].iloc[0] if "name" in coin_df.columns else selected_symbol
             fig_coin.update_layout(
                 **BASE_LAYOUT,
+                hovermode   = "x unified", 
                 title=title_cfg(f"◈  {selected_symbol}  ·  {coin_name_full}  ·  {date_range}  ·  {chart_type}"),
                 height=780, xaxis_rangeslider_visible=False, showlegend=True,
                 legend=dict(orientation="h", x=0.01, y=1.02,
