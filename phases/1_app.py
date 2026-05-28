@@ -239,7 +239,15 @@ def title_cfg(text, size=17):
 @st.cache_data(show_spinner="⏳ Loading from HuggingFace... (first load ~30s)")
 def load_data():
     import datetime
-    cutoff = datetime.date.today() - datetime.timedelta(days=365)
+    # Step 1 — peek at the last date in the dataset
+    _peek = pl.scan_parquet(
+        "hf://datasets/shekharbiswas/crypto-indicators/crypto_with_indicators.parquet"
+    ).select("date").max().collect()
+
+    latest_date = _peek["date"][0]
+
+    # Step 2 — go 1Y back from the DATA's latest date, not today
+    cutoff = latest_date - datetime.timedelta(days=365)
 
     df = (
         pl.scan_parquet("hf://datasets/shekharbiswas/crypto-indicators/crypto_with_indicators.parquet")
