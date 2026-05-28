@@ -21,6 +21,7 @@ import gdown
 import os
 import tempfile  
 import requests
+import datetime
 
 
 
@@ -233,19 +234,18 @@ def title_cfg(text, size=17):
 # ══════════════════════════════════════════════════════════════
 #  DATA LOADING  (cached)
 # ══════════════════════════════════════════════════════════════
-@st.cache_data(show_spinner="⏳ Downloading dataset from Drive... (~1-2 mins on first load)")
-def load_data(file_id: str = "17fdjZTRpba-ubYlvAkE5NmA0f3_e715r"):
-    
-    output_path = os.path.join(tempfile.gettempdir(), "crypto_with_indicators.csv")
-    
-    if not os.path.exists(output_path):
-        url = f"https://drive.google.com/uc?id={file_id}"
-        gdown.download(url, output_path, quiet=False)
+
+
+
+@st.cache_data(show_spinner="⏳ Loading from HuggingFace... (first load ~30s)")
+def load_data():
+    import datetime
+#    cutoff = datetime.date.today() - datetime.timedelta(days=365)
 
     df = (
-        pl.read_csv(output_path, try_parse_dates=True)
+        pl.scan_parquet("hf://datasets/shekharbiswas/crypto-indicators/crypto_with_indicators.parquet")
         .with_columns([
-            pl.col("date").cast(pl.Date),
+            pl.col("date").str.to_date("%Y-%m-%d"),
             pl.col("close").cast(pl.Float64),
             pl.col("open").cast(pl.Float64),
             pl.col("high").cast(pl.Float64),
@@ -318,11 +318,14 @@ def load_data(file_id: str = "17fdjZTRpba-ubYlvAkE5NmA0f3_e715r"):
             pl.col("Next_5d_Return").cast(pl.Float64),
             pl.col("Next_7d_Return").cast(pl.Float64),
             pl.col("surge_score").cast(pl.Float64),
+            pl.col("cap_tier").cast(pl.Utf8),
         ])
         .filter(pl.col("is_stablecoin") == False)
-        .filter(pl.col("date") >= pl.date(2020, 1, 1))
+#       .filter(pl.col("date") >= pl.lit(cutoff))
         .sort(["coin_id", "date"])
+        .collect()
     )
+
     df = df.with_columns([
         (pl.col("close") / pl.col("close").shift(1).over("coin_id"))
         .log().alias("log_ret")
@@ -660,7 +663,7 @@ def forward_return_in_regime(df_pd: pd.DataFrame, coin_id: str,
 #  LOAD
 # ══════════════════════════════════════════════════════════════
 try:
-    df = load_data("17fdjZTRpba-ubYlvAkE5NmA0f3_e715r")
+    df = load_data()
     s  = build_summary(df)
 
 except Exception as e:
