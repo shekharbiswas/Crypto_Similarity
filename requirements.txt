@@ -5,7 +5,6 @@ plotly
 scipy
 numpy
 pyarrow>=14.0.0
-gdown
 matplotlib
 huggingface_hub>=0.21
 fsspec
