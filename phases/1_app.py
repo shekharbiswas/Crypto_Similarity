@@ -1227,7 +1227,8 @@ with tab3:
     with ctrl2:
         chart_type = st.radio("Chart type", ["Line","Candlestick","OHLC"], index=0, horizontal=True, key="dd_ct")
     with ctrl3:
-        date_range = st.selectbox("Date range", ["1M","3M","6M","1Y","2Y","3Y","All"], index=3, key="dd_dr")
+        # date_range = st.selectbox("Date range", ["1M","3M","6M","1Y","2Y","3Y","All"], index=3, key="dd_dr")
+        date_range = st.selectbox("Date range", ["1M","3M","6M","1Y"], index=3, key="dd_dr")
 
     matching_ids = s[s["symbol"] == selected_symbol]["coin_id"].unique().tolist()
 
