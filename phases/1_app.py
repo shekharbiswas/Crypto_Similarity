@@ -274,7 +274,7 @@ def load_data():
     latest_date = datetime.date.fromisoformat(str(_peek["date"][0])[:10])
 
     # Step 2 — go 1Y back from the DATA's latest date, not today
-    cutoff = latest_date - datetime.timedelta(days=365)
+    cutoff = latest_date - datetime.timedelta(days=365*3)
 
     df = (
         pl.scan_parquet("hf://datasets/shekharbiswas/crypto-indicators/crypto_with_indicators.parquet")
