@@ -182,6 +182,41 @@ hr { border-color: var(--border) !important; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
             
+
+/* ── Fix radio button text ── */
+[data-testid="stRadio"] label p,
+[data-testid="stRadio"] label span,
+[data-testid="stRadio"] div[role="radiogroup"] label {
+    color: #1e293b !important;
+}
+
+/* ── Fix checkbox text ── */
+[data-testid="stCheckbox"] label p,
+[data-testid="stCheckbox"] label span {
+    color: #1e293b !important;
+}
+
+/* ── Fix slider text ── */
+[data-testid="stSlider"] p,
+[data-testid="stSlider"] label,
+[data-testid="stSlider"] span {
+    color: #1e293b !important;
+}
+
+/* ── Fix selectbox text ── */
+[data-testid="stSelectbox"] label p,
+[data-testid="stSelectbox"] div {
+    color: #1e293b !important;
+}
+
+/* ── Fix sidebar all text ── */
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] div {
+    color: #1e293b !important;
+}           
+            
 [data-testid="collapsedControl"] {
     display: none !important;
 }
