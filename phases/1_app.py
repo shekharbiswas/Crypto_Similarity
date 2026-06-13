@@ -50,14 +50,14 @@ st.markdown("""
 st.markdown("""
 <style>
 :root {
-    --bg:       #0a0e1a;
-    --grid:     #0f1629;
-    --card:     #111827;
-    --border:   #1e2d45;
-    --accent:   #00f5d4;
-    --accent2:  #f72585;
-    --gold:     #ffd60a;
-    --text:     #e2e8f0;
+    --bg:       #f0f4f8;
+    --grid:     #e2e8f0;
+    --card:     #ffffff;
+    --border:   #cbd5e1;
+    --accent:   #0077b6;
+    --accent2:  #e63946;
+    --gold:     #f4a261;
+    --text:     #1e293b;
     --muted:    #64748b;
 }
 
@@ -68,7 +68,7 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 
 [data-testid="stSidebar"] {
-    background: #0d1220 !important;
+    background: #dde6f0 !important;
     border-right: 1px solid var(--border) !important;
 }
 
@@ -98,9 +98,9 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 
 @keyframes cardGlow {
-    0%   { box-shadow: 0 0 6px rgba(0,245,212,0.10), 0 0 0px rgba(0,245,212,0.05); border-color: #1e2d45; }
-    50%  { box-shadow: 0 0 18px rgba(0,245,212,0.35), 0 0 40px rgba(0,245,212,0.10); border-color: rgba(0,245,212,0.45); }
-    100% { box-shadow: 0 0 6px rgba(0,245,212,0.10), 0 0 0px rgba(0,245,212,0.05); border-color: #1e2d45; }
+    0%   { box-shadow: 0 0 6px rgba(0,119,182,0.10), 0 0 0px rgba(0,119,182,0.05); border-color: #cbd5e1; }
+    50%  { box-shadow: 0 0 18px rgba(0,119,182,0.25), 0 0 30px rgba(0,119,182,0.08); border-color: rgba(0,119,182,0.4); }
+    100% { box-shadow: 0 0 6px rgba(0,119,182,0.10), 0 0 0px rgba(0,119,182,0.05); border-color: #cbd5e1; }
 }
 
 @keyframes accentPulse {
@@ -118,7 +118,7 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 [data-testid="stMetric"]:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 28px rgba(0,245,212,0.5) !important;
+    box-shadow: 0 0 20px rgba(0,119,182,0.3) !important;
     border-color: var(--accent) !important;
     animation: none;
 }
@@ -200,14 +200,14 @@ hr { border-color: var(--border) !important; }
 # ══════════════════════════════════════════════════════════════
 #  PALETTE & HELPERS
 # ══════════════════════════════════════════════════════════════
-BG      = "#0a0e1a"
-GRID    = "#0f1629"
-CARD    = "#111827"
-ACCENT  = "#00f5d4"
-ACCENT2 = "#f72585"
-GOLD    = "#ffd60a"
-TEXT    = "#e2e8f0"
-MUTED   = "#4a5568"
+BG      = "#f0f4f8"
+GRID    = "#e2e8f0"
+CARD    = "#ffffff"
+ACCENT  = "#0077b6"
+ACCENT2 = "#e63946"
+GOLD    = "#f4a261"
+TEXT    = "#1e293b"
+MUTED   = "#64748b"
 
 TIER_COLORS = {
     "mega":  "#f72585",
@@ -218,8 +218,8 @@ TIER_COLORS = {
 }
 
 AXIS_BASE = dict(
-    gridcolor     = "#1a2540",
-    zerolinecolor = "#1a2540",
+    gridcolor     = "#cbd5e1",
+    zerolinecolor = "#94a3b8",
     title_font    = dict(color=MUTED, family="JetBrains Mono"),
 )
 AXIS = dict(
@@ -239,9 +239,9 @@ BASE_LAYOUT = dict(
     font          = dict(family="JetBrains Mono, monospace", color=TEXT, size=12),
     margin        = dict(t=60, b=40, l=50, r=30),
     hoverlabel    = dict(
-        bgcolor   = "#1a2035",
-        font_size = 13,
-        font_family = "JetBrains Mono",
+    bgcolor   = "#ffffff",
+    font_size = 13,
+    font_family = "JetBrains Mono",
     ),
 )
 
@@ -872,11 +872,11 @@ with tab1:
         unsafe_allow_html=True,
     )
     st.markdown(f"""
-    <div style='background:#111827;border:1px solid #1e2d45;border-radius:10px;
+    <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
     <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ How to read this chart</div>
-    <div style='color:#94a3b8;font-size:13px;line-height:1.8'>
+    <div style='color:#475569;font-size:13px;line-height:1.8'>
     Each <b style='color:#e2e8f0'>bubble</b> is one coin. The <b style='color:#e2e8f0'>x-axis</b>
     is daily return volatility (σ) — how wildly the price moves day-to-day.
     The <b style='color:#e2e8f0'>y-axis</b> is the selected return period.
@@ -958,7 +958,7 @@ with tab1:
     ]:
         fig.add_annotation(
             x=qx, y=qy, text=qtxt, showarrow=False,
-            font=dict(color="rgba(255,255,255,0.13)", size=11, family="JetBrains Mono"),
+            font=dict(color="rgba(30,41,59,0.18)", size=11, family="JetBrains Mono"),
         )
 
     fig.update_layout(
@@ -990,7 +990,7 @@ with tab1:
                 f"border-radius:20px;letter-spacing:1px'>{t.upper()}</span>"
                 for t in selected_tiers
             )
-            + f"<span style='background:#1e2d45;color:{GOLD};"
+            + f"<span style='background:#e2e8f0;color:#b45309;"
               f"font-size:10px;font-family:JetBrains Mono;padding:3px 10px;"
               f"border-radius:20px;letter-spacing:1px'>📅 {period_sel} ACTIVE</span>"
             + "</div>",
@@ -1058,11 +1058,11 @@ with tab2:
         unsafe_allow_html=True,
     )
     st.markdown(f"""
-    <div style='background:#111827;border:1px solid #1e2d45;border-radius:10px;
+    <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
     <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ Cap tier definitions</div>
-    <div style='color:#94a3b8;font-size:13px;line-height:1.8'>
+    <div style='color:#475569;font-size:13px;line-height:1.8'>
     Coins are segmented by market capitalisation into five tiers:
     <b style='color:#f72585'>MEGA</b> (&gt;$100B),
     <b style='color:#7209b7'>LARGE</b> ($10B–$100B),
@@ -1142,8 +1142,8 @@ with tab2:
         title=title_cfg(f"◈  Cap Tier Breakdown  ·  {period_sel} Performance"),
         height=480, margin=dict(t=70, b=50, l=50, r=30),
     )
-    fig3.update_xaxes(tickfont=dict(color=MUTED), gridcolor="#1a2540", zerolinecolor="#1a2540")
-    fig3.update_yaxes(tickfont=dict(color=MUTED), gridcolor="#1a2540", zerolinecolor="#1a2540")
+    fig3.update_xaxes(tickfont=dict(color=MUTED), gridcolor="#cbd5e1", zerolinecolor="#1a2540")
+    fig3.update_yaxes(tickfont=dict(color=MUTED), gridcolor="#cbd5e1", zerolinecolor="#1a2540")
     for ann in fig3.layout.annotations:
         ann.font.color = ACCENT
         ann.font.size  = 13
@@ -1188,11 +1188,11 @@ with tab3:
         unsafe_allow_html=True,
     )
     st.markdown("""
-    <div style='background:#111827;border:1px solid #1e2d45;border-radius:10px;
+    <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
     <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ How to read this tab</div>
-    <div style='color:#94a3b8;font-size:13px;line-height:1.8'>
+    <div style='color:#475569;font-size:13px;line-height:1.8'>
     This tab gives a complete single-coin picture across price action, momentum, and trend.
     The <b style='color:#e2e8f0'>price chart</b> (top panel) shows OHLC with an optional 20-day MA.
     The <b style='color:#e2e8f0'>RSI panel</b> highlights overbought (&gt;70, gold zone) and oversold
@@ -1357,9 +1357,9 @@ with tab3:
             for ann in fig_coin.layout.annotations:
                 ann.font.color = MUTED
                 ann.font.size  = 11
-            fig_coin.update_xaxes(gridcolor="#1a2540", zerolinecolor="#1a2540",
+            fig_coin.update_xaxes(gridcolor="#cbd5e1", zerolinecolor="#1a2540",
                                    tickfont=dict(color=MUTED, family="JetBrains Mono"))
-            fig_coin.update_yaxes(gridcolor="#1a2540", zerolinecolor="#1a2540",
+            fig_coin.update_yaxes(gridcolor="#cbd5e1", zerolinecolor="#1a2540",
                                    tickfont=dict(color=MUTED, family="JetBrains Mono"))
             st.plotly_chart(fig_coin, width='stretch')
 
@@ -1427,11 +1427,11 @@ with tab4:
         unsafe_allow_html=True,
     )
     st.markdown("""
-    <div style='background:#111827;border:1px solid #1e2d45;border-radius:10px;
+    <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
     <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ What this engine measures</div>
-    <div style='color:#94a3b8;font-size:13px;line-height:1.8'>
+    <div style='color:#475569;font-size:13px;line-height:1.8'>
     Ranks every coin by <b style='color:#e2e8f0'>Pearson correlation</b> computed on
     <b style='color:#e2e8f0'>daily log returns</b>.
     A high score means the two coins tend to rise and fall <i>together on the same days</i>,
@@ -1748,7 +1748,7 @@ with tab4:
             y_vals = seas.index.tolist()
             fig_s = go.Figure(go.Heatmap(
                 z=z_vals, x=x_vals, y=y_vals,
-                colorscale=[[0.0,"#f72585"],[0.35,"#3a0ca3"],[0.5,"#1e2d45"],[0.65,"#4361ee"],[1.0,"#00f5d4"]],
+                colorscale=[[0.0,"#e63946"],[0.35,"#f4a261"],[0.5,"#f0f4f8"],[0.65,"#90e0ef"],[1.0,"#0077b6"]],
                 zmid=0,
                 text=[[f"{v:.1f}%" if not np.isnan(v) else "" for v in row] for row in z_vals],
                 texttemplate="%{text}",
@@ -1766,8 +1766,8 @@ with tab4:
                 title=title_cfg(title_h, size=14), height=400,
                 margin=dict(t=50, b=30, l=60, r=40),
                 font=dict(family="JetBrains Mono", color=TEXT, size=11),
-                xaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#1a2540"),
-                yaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#1a2540", autorange="reversed"),
+                xaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#cbd5e1"),
+                yaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#cbd5e1", autorange="reversed"),
             )
             return fig_s
 
@@ -1806,7 +1806,7 @@ with tab4:
                 z=diff_hm.values,
                 x=[str(c) for c in common_years],
                 y=diff_hm.index.tolist(),
-                colorscale=[[0.0,"#f72585"],[0.5,"#1e2d45"],[1.0,"#00f5d4"]],
+                colorscale=[[0.0,"#e63946"],[0.5,"#f0f4f8"],[1.0,"#0077b6"]],
                 zmid=0,
                 text=[[f"{v:+.1f}%" if not np.isnan(v) else "" for v in row] for row in diff_hm.values],
                 texttemplate="%{text}",
@@ -1824,8 +1824,8 @@ with tab4:
                 title=title_cfg(f"◈  Δ Return  ·  {anchor_symbol} − {best_sym}  ·  Month × Year", size=14),
                 height=400, margin=dict(t=50, b=30, l=60, r=40),
                 font=dict(family="JetBrains Mono", color=TEXT, size=11),
-                xaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#1a2540"),
-                yaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#1a2540", autorange="reversed"),
+                xaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#cbd5e1"),
+                yaxis=dict(tickfont=dict(color=MUTED, size=11), gridcolor="#cbd5e1", autorange="reversed"),
             )
             st.plotly_chart(fig_diff, width='stretch')
 
@@ -1861,11 +1861,11 @@ with tab5:
         unsafe_allow_html=True,
     )
     st.markdown("""
-    <div style='background:#111827;border:1px solid #1e2d45;border-radius:10px;
+    <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
     <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ How regime similarity differs from return similarity</div>
-    <div style='color:#94a3b8;font-size:13px;line-height:1.8'>
+    <div style='color:#475569;font-size:13px;line-height:1.8'>
     Return similarity (Tab 4) asks: <i>"which coins moved together historically?"</i> —
     it is backward-looking across a chosen window. Regime similarity asks:
     <i>"which coins are in the same technical state <b style='color:#e2e8f0'>right now</b>?"</i>
@@ -2059,9 +2059,9 @@ with tab5:
         polar=dict(
             bgcolor=GRID,
             radialaxis=dict(visible=True, range=[0,1],
-                            tickfont=dict(color=MUTED, size=9), gridcolor="#1a2540"),
+                            tickfont=dict(color=MUTED, size=9), gridcolor="#cbd5e1"),
             angularaxis=dict(tickfont=dict(color=TEXT, size=11, family="JetBrains Mono"),
-                             gridcolor="#1a2540"),
+                             gridcolor="#cbd5e1"),
         ),
         font=dict(family="JetBrains Mono", color=TEXT),
         legend=dict(bgcolor="rgba(0,0,0,0.6)", bordercolor="#1e2d45", borderwidth=1,
@@ -2110,11 +2110,11 @@ with tab6:
         unsafe_allow_html=True,
     )
     st.markdown("""
-    <div style='background:#111827;border:1px solid #1e2d45;border-radius:10px;
+    <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
     <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ What this lab answers</div>
-    <div style='color:#94a3b8;font-size:13px;line-height:1.8'>
+    <div style='color:#475569;font-size:13px;line-height:1.8'>
     This tab uses the dataset's pre-computed
     <b style='color:#e2e8f0'>Next_1d / 2d / 3d / 5d / 7d_Return</b> columns —
     the actual subsequent returns already labelled in the data — to ask a conditional question:<br><br>
