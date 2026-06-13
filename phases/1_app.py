@@ -168,7 +168,7 @@ html, body, [data-testid="stAppViewContainer"] {
 [data-testid="stTabs"] button[aria-selected="true"] {
     color: var(--accent) !important;
     border-bottom: 2px solid var(--accent) !important;
-    text-shadow: 0 0 10px rgba(0,245,212,0.6);
+    text-shadow: none;
 }
 
 [data-testid="stExpander"] summary {
@@ -874,7 +874,7 @@ with tab1:
     st.markdown(f"""
     <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
-    <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
+    <div style='color:#0077b6;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ How to read this chart</div>
     <div style='color:#475569;font-size:13px;line-height:1.8'>
     Each <b style='color:#1e293b'>bubble</b> is one coin. The <b style='color:#1e293b'>x-axis</b>
@@ -1061,7 +1061,7 @@ with tab2:
     st.markdown(f"""
     <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
-    <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
+    <div style='color:#0077b6;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ Cap tier definitions</div>
     <div style='color:#475569;font-size:13px;line-height:1.8'>
     Coins are segmented by market capitalisation into five tiers:
@@ -1143,8 +1143,8 @@ with tab2:
         title=title_cfg(f"◈  Cap Tier Breakdown  ·  {period_sel} Performance"),
         height=480, margin=dict(t=70, b=50, l=50, r=30),
     )
-    fig3.update_xaxes(tickfont=dict(color=MUTED), gridcolor="#cbd5e1", zerolinecolor="#1a2540")
-    fig3.update_yaxes(tickfont=dict(color=MUTED), gridcolor="#cbd5e1", zerolinecolor="#1a2540")
+    fig3.update_xaxes(tickfont=dict(color=MUTED), gridcolor="#cbd5e1", zerolinecolor="#94a3b8")
+    fig3.update_yaxes(tickfont=dict(color=MUTED), gridcolor="#cbd5e1", zerolinecolor="#94a3b8")
     for ann in fig3.layout.annotations:
         ann.font.color = ACCENT
         ann.font.size  = 13
@@ -1424,28 +1424,30 @@ with tab3:
 with tab4:
     st.markdown(
         "<h2 style='font-family:\"Open Sans\",sans-serif;font-size:26px;font-weight:800;"
-        "color:#e2e8f0;margin:0 0 4px 0'>"
-        "🔗 Return <span style='color:#00f5d4'>Similarity</span></h2>",
+        "color:#1e293b;margin:0 0 4px 0'>"
+        "🔗 Return <span style='color:#0077b6'>Similarity</span></h2>",
         unsafe_allow_html=True,
     )
-    st.markdown(f"""
+    st.markdown("""
     <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
     <div style='color:#0077b6;font-size:11px;text-transform:uppercase;
-    letter-spacing:1px;margin-bottom:8px'>◈ Cap tier definitions</div>
+    letter-spacing:1px;margin-bottom:8px'>◈ What this engine measures</div>
     <div style='color:#475569;font-size:13px;line-height:1.8'>
-    Coins are segmented by market capitalisation into five tiers:
-    <b style='color:#e91e8c'>MEGA</b> (&gt;$100B),
-    <b style='color:#7209b7'>LARGE</b> ($10B–$100B),
-    <b style='color:#6930c3'>MID</b> ($1B–$10B),
-    <b style='color:#4361ee'>SMALL</b> ($100M–$1B), and
-    <b style='color:#0096c7'>MICRO</b> (&lt;$100M).
-    The three bar charts show, for the selected return period:
-    how many coins sit in each tier (left), their average return (centre),
-    and their median daily volatility (right).
-    The violin plot below shows the full return distribution — not just averages —
-    revealing skew, outliers, and whether gains are concentrated in a few coins
-    or broadly distributed. Wide violins = many coins at that return level.
+    Ranks every coin by <b style='color:#1e293b'>Pearson correlation</b> computed on
+    <b style='color:#1e293b'>daily log returns</b>.
+    A high score means the two coins tend to rise and fall <i>together on the same days</i>,
+    regardless of their absolute price difference.
+    If BTC posts +2% on a Monday and SOL posts +1.8% on the same Monday, that co-movement
+    is captured; a coin that simply drifted upward over months without tracking day-to-day
+    moves would not score highly here.
+    <b style='color:#0077b6'>Same-Dir %</b> adds a non-parametric check: out of all shared
+    trading days, how often did both coins move in the same direction? It catches correlations
+    that Pearson might inflate due to a few large outlier moves.
+    The <b style='color:#1e293b'>rolling 90-day chart</b> is the most actionable view: it reveals
+    whether the correlation is structurally stable or regime-dependent. A correlation that collapses
+    to zero during bear markets is far less reliable for hedging or pair-trading than one that
+    holds consistently across bull and bear cycles.
     </div></div>
     """, unsafe_allow_html=True)
 
@@ -1576,8 +1578,8 @@ with tab4:
         x=1.0, y=1.0, xref="paper", yref="paper",
         text=f"Anchor: <b>{anchor_symbol}</b>  [{anchor_meta['cap_tier'].upper()}]",
         showarrow=False, align="right",
-        font=dict(color=GOLD, size=12, family="JetBrains Mono"),
-        bgcolor="rgba(0,0,0,0.5)", bordercolor=GOLD, borderwidth=1,
+        font=dict(color="#b45309", size=12, family="JetBrains Mono"),
+        bgcolor="rgba(255,255,255,0.92)", bordercolor="#b45309", borderwidth=1,
         borderpad=6, xanchor="right", yanchor="top",
     )
 
@@ -1647,8 +1649,8 @@ with tab4:
         title=title_cfg(f"◈  Price Pattern Overlap  ·  {anchor_symbol} + Top-{top_n_overlay}  ·  {sim_window}"),
         height=500, showlegend=True,
         legend=dict(orientation="v", x=0.01, y=0.99,
-                    bgcolor="rgba(0,0,0,0.65)", bordercolor="#1e2d45", borderwidth=1,
-                    font=dict(size=11, family="JetBrains Mono")),
+                    bgcolor="rgba(255,255,255,0.95)", bordercolor="#cbd5e1", borderwidth=1,
+                    font=dict(size=11, family="JetBrains Mono", color=TEXT)),
         xaxis=dict(**AXIS, title=dict(text="Date", font=dict(color=MUTED))),
         yaxis=dict(**AXIS, title=dict(text="Indexed Price (base = 100)", font=dict(color=MUTED))),
     )
@@ -1709,8 +1711,8 @@ with tab4:
         title=title_cfg(f"◈  Rolling 90d Correlation  ·  {anchor_symbol} vs Top-5  ·  Regime Changes Visible"),
         height=420, showlegend=True,
         legend=dict(orientation="h", x=0.01, y=1.02,
-                    bgcolor="rgba(0,0,0,0.6)", bordercolor="#1e2d45", borderwidth=1,
-                    font=dict(size=11, family="JetBrains Mono")),
+                    bgcolor="rgba(255,255,255,0.95)", bordercolor="#cbd5e1", borderwidth=1,
+                    font=dict(size=11, family="JetBrains Mono", color=TEXT)),
         xaxis=dict(**AXIS, title=dict(text="Date", font=dict(color=MUTED))),
         yaxis=dict(**AXIS, title=dict(text="Pearson r  (90d rolling)", font=dict(color=MUTED)),
                    range=[-1.1, 1.1]),
@@ -1856,29 +1858,29 @@ with tab4:
 with tab5:
     st.markdown(
         "<h2 style='font-family:\"Open Sans\",sans-serif;font-size:26px;font-weight:800;"
-        "color:#e2e8f0;margin:0 0 4px 0'>"
-        "🧭 Regime <span style='color:#00f5d4'>Similarity</span></h2>",
+        "color:#1e293b;margin:0 0 4px 0'>"
+        "🧭 Regime <span style='color:#0077b6'>Similarity</span></h2>",
         unsafe_allow_html=True,
     )
     st.markdown("""
     <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
-    <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
+    <div style='color:#0077b6;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ How regime similarity differs from return similarity</div>
     <div style='color:#475569;font-size:13px;line-height:1.8'>
     Return similarity (Tab 4) asks: <i>"which coins moved together historically?"</i> —
     it is backward-looking across a chosen window. Regime similarity asks:
-    <i>"which coins are in the same technical state <b style='color:#e2e8f0'>right now</b>?"</i>
+    <i>"which coins are in the same technical state <b style='color:#1e293b'>right now</b>?"</i>
     — it is a snapshot of today's indicator readings.<br><br>
-    We build an <b style='color:#e2e8f0'>11-feature technical vector</b> for each coin's latest row:
+    We build an <b style='color:#1e293b'>11-feature technical vector</b> for each coin's latest row:
     RSI, Bollinger Band %, ADX, +DI/−DI, Supertrend direction, Parabolic SAR, CMF, MFI,
     Aroon Oscillator, and EMA stack alignment (9/21/50).
-    Each feature is <b style='color:#e2e8f0'>z-score normalised</b> across the entire coin universe
+    Each feature is <b style='color:#1e293b'>z-score normalised</b> across the entire coin universe
     so that scale-dependent indicators do not dominate scale-independent ones.
-    We then compute <b style='color:#e2e8f0'>cosine similarity</b> between the anchor's vector
+    We then compute <b style='color:#1e293b'>cosine similarity</b> between the anchor's vector
     and every other coin's vector. A cosine score near 1.0 means both coins are technically
     co-positioned today — same momentum zone, same trend regime, same band position.<br><br>
-    <b style='color:#00f5d4'>Practical uses:</b> pair-trading setups (two coins in the same regime
+    <b style='color:#0077b6'>Practical uses:</b> pair-trading setups (two coins in the same regime
     that historically diverge), portfolio diversification (avoid two holdings with identical
     regime vectors — they will react identically to macro shocks), and sector rotation
     (coins leaving one regime cluster and entering another are in transition).
@@ -2064,8 +2066,8 @@ with tab5:
                              gridcolor="#cbd5e1"),
         ),
         font=dict(family="JetBrains Mono", color=TEXT),
-        legend=dict(bgcolor="rgba(0,0,0,0.6)", bordercolor="#1e2d45", borderwidth=1,
-                    font=dict(size=12)),
+        legend=dict(bgcolor="rgba(255,255,255,0.95)", bordercolor="#cbd5e1", borderwidth=1,
+                    font=dict(size=12, color=TEXT)),
         height=440,
         title=title_cfg(
             f"◈  Regime Radar  ·  {reg_anchor_sym}  vs  {best_reg_sym}"
@@ -2105,29 +2107,29 @@ with tab5:
 with tab6:
     st.markdown(
         "<h2 style='font-family:\"Open Sans\",sans-serif;font-size:26px;font-weight:800;"
-        "color:#e2e8f0;margin:0 0 4px 0'>"
-        "🔮 Forward Return <span style='color:#00f5d4'>Lab</span></h2>",
+        "color:#1e293b;margin:0 0 4px 0'>"
+        "🔮 Forward Return <span style='color:#0077b6'>Lab</span></h2>",
         unsafe_allow_html=True,
     )
     st.markdown("""
     <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
-    <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
+    <div style='color:#0077b6;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ What this lab answers</div>
     <div style='color:#475569;font-size:13px;line-height:1.8'>
     This tab uses the dataset's pre-computed
-    <b style='color:#e2e8f0'>Next_1d / 2d / 3d / 5d / 7d_Return</b> columns —
+    <b style='color:#1e293b'>Next_1d / 2d / 3d / 5d / 7d_Return</b> columns —
     the actual subsequent returns already labelled in the data — to ask a conditional question:<br><br>
     <i>"Historically, when this coin was in a similar RSI + ADX regime to today,
     what did its returns look like over the next 1 to 7 days?"</i><br><br>
-    This is <b style='color:#e2e8f0'>not a prediction</b>. It is a
-    <b style='color:#e2e8f0'>historical base-rate analysis</b> — the same logic
+    This is <b style='color:#1e293b'>not a prediction</b>. It is a
+    <b style='color:#1e293b'>historical base-rate analysis</b> — the same logic
     a sports analyst uses when saying "teams leading at half-time win 72% of the time."
     Knowing the base rate does not guarantee the next outcome, but it shifts your prior.
     If the coin has been in a similar RSI+ADX regime 40 times historically and the
     median 5-day return was +4%, that is useful context for position sizing, even if
     individual instances vary widely.<br><br>
-    The <b style='color:#00f5d4'>Surge Score scatter</b> adds a second test:
+    The <b style='color:#0077b6'>Surge Score scatter</b> adds a second test:
     within this matched regime, do coins with higher surge scores actually go on to post
     higher 5-day returns? If the OLS trend line slopes upward and the r value is
     meaningful, surge score has incremental predictive value here — if the line is flat,
@@ -2270,7 +2272,7 @@ with tab6:
                 "the y-axis is the 5-day return that followed. "
                 "If surge score carries signal within this regime, higher surge days should cluster "
                 "toward higher returns — visible as an upward-sloping OLS line. "
-                "The <b style='color:#e2e8f0'>r value</b> on the trend line measures linear association: "
+                "The <b style='color:#1e293b'>r value</b> on the trend line measures linear association: "
                 "r > 0.3 is worth noting; r > 0.5 is strong for a single indicator. "
                 "A flat or negative slope means surge score is not informative for this coin in this regime "
                 "— check other indicators in the Regime Similarity tab instead."
@@ -2313,8 +2315,8 @@ with tab6:
                 xaxis=dict(**AXIS, title=dict(text="Surge Score", font=dict(color=MUTED))),
                 yaxis=dict(**AXIS, title=dict(text="5d Forward Return %", font=dict(color=MUTED))),
                 showlegend=True,
-                legend=dict(bgcolor="rgba(0,0,0,0.6)", bordercolor="#1e2d45",
-                            borderwidth=1, font=dict(size=11)),
+                legend=dict(bgcolor="rgba(255,255,255,0.95)", bordercolor="#cbd5e1",
+                            borderwidth=1, font=dict(size=11, color=TEXT)),
             )
             st.plotly_chart(fig_sc, width='stretch')
 
