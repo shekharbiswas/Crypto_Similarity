@@ -726,9 +726,9 @@ regime_snapshot = build_regime_snapshot(df, s)
 with st.sidebar:
     st.markdown(
         "<div style='font-family:\"Open Sans\",sans-serif;font-size:22px;"
-        "font-weight:800;color:#00f5d4;margin-bottom:4px'>◈ CRYPTO</div>"
+        "font-weight:800;color:#0077b6;margin-bottom:4px'>◈ CRYPTO</div>"
         "<div style='font-family:\"Open Sans\",sans-serif;font-size:22px;"
-        "font-weight:800;color:#e2e8f0;margin-bottom:20px'>INTELLIGENCE</div>",
+        "font-weight:800;color:#1e293b;margin-bottom:20px'>INTELLIGENCE</div>",
         unsafe_allow_html=True,
     )
     st.markdown(
@@ -786,9 +786,9 @@ st.markdown(
     "<h1 style='"
     "font-family:\"Open Sans\",sans-serif;"
     "font-size:36px;font-weight:800;"
-    "color:#e2e8f0;margin:0;padding:0"
-    "'>Crypto <span style=\"color:#00f5d4\">Intelligence</span></h1>"
-    "<p style='font-family:JetBrains Mono,monospace;color:#4a5568;font-size:13px;"
+    "color:#1e293b;margin:0;padding:0"
+    "'>Crypto <span style=\"color:#0077b6\">Intelligence</span></h1>"
+    "<p style='font-family:JetBrains Mono,monospace;color:#64748b;font-size:13px;"
     "margin-top:4px;margin-bottom:24px'>6 tabs  ·  Market Overview · Tier Breakdown · Coin Deep Dive · Return Similarity · Regime Similarity · Forward Return Lab</p>",
     unsafe_allow_html=True,
 )
@@ -867,8 +867,8 @@ OVERLAY_PALETTE = [
 with tab1:
     st.markdown(
         "<h2 style='font-family:\"Open Sans\",sans-serif;font-size:26px;font-weight:800;"
-        "color:#e2e8f0;margin:0 0 4px 0'>"
-        "⬤ Market <span style='color:#00f5d4'>Overview</span></h2>",
+        "color:#1e293b;margin:0 0 4px 0'>"
+        "⬤ Market <span style='color:#0077b6'>Overview</span></h2>",
         unsafe_allow_html=True,
     )
     st.markdown(f"""
@@ -877,14 +877,14 @@ with tab1:
     <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ How to read this chart</div>
     <div style='color:#475569;font-size:13px;line-height:1.8'>
-    Each <b style='color:#e2e8f0'>bubble</b> is one coin. The <b style='color:#e2e8f0'>x-axis</b>
+    Each <b style='color:#1e293b'>bubble</b> is one coin. The <b style='color:#1e293b'>x-axis</b>
     is daily return volatility (σ) — how wildly the price moves day-to-day.
-    The <b style='color:#e2e8f0'>y-axis</b> is the selected return period.
-    <b style='color:#e2e8f0'>Bubble size</b> scales with market cap (log-transformed so micro-caps
+    The <b style='color:#1e293b'>y-axis</b> is the selected return period.
+    <b style='color:#1e293b'>Bubble size</b> scales with market cap (log-transformed so micro-caps
     remain visible). The <b style='color:{GOLD}'>gold dashed line</b> is the median volatility:
     coins to its right are riskier than average; coins above the zero line are profitable
     over the selected period. The ideal quadrant — low volatility, high return — is top-left.
-    Use the <b style='color:#e2e8f0'>sidebar</b> to filter by cap tier, change the return period,
+    Use the <b style='color:#1e293b'>sidebar</b> to filter by cap tier, change the return period,
     and adjust volatility clipping.
     </div></div>
     """, unsafe_allow_html=True)
@@ -968,7 +968,8 @@ with tab1:
         legend=dict(
             title=dict(text="Cap Tier", font=dict(color=ACCENT)),
             orientation="v", x=0.01, y=0.99,
-            bgcolor="rgba(0,0,0,0.6)", bordercolor="#1e2d45", borderwidth=1,
+            bgcolor="rgba(255,255,255,0.95)", bordercolor="#cbd5e1", borderwidth=1,
+            font=dict(color=TEXT, family="JetBrains Mono"),
         ),
         xaxis=dict(title=dict(text=f"Daily Volatility  (σ, clipped @{vol_clip})", font=dict(color=MUTED)), **AXIS),
         yaxis=dict(title=dict(text=f"Return %  —  {period_sel}", font=dict(color=MUTED)), **AXIS),
@@ -1053,8 +1054,8 @@ with tab1:
 with tab2:
     st.markdown(
         "<h2 style='font-family:\"Open Sans\",sans-serif;font-size:26px;font-weight:800;"
-        "color:#e2e8f0;margin:0 0 4px 0'>"
-        "▮ Tier <span style='color:#00f5d4'>Breakdown</span></h2>",
+        "color:#1e293b;margin:0 0 4px 0'>"
+        "▮ Tier <span style='color:#0077b6'>Breakdown</span></h2>",
         unsafe_allow_html=True,
     )
     st.markdown(f"""
@@ -1183,26 +1184,26 @@ with tab2:
 with tab3:
     st.markdown(
         "<h2 style='font-family:\"Open Sans\",sans-serif;font-size:24px;font-weight:800;"
-        "color:#e2e8f0;margin:0 0 4px 0'>"
-        "📊 Coin <span style='color:#00f5d4'>Deep Dive</span></h2>",
+        "color:#1e293b;margin:0 0 4px 0'>"
+        "📊 Coin <span style='color:#0077b6'>Deep Dive</span></h2>",
         unsafe_allow_html=True,
     )
     st.markdown("""
     <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
-    <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
+    <div style='color:#0077b6;font-size:11px;text-transform:uppercase;
     letter-spacing:1px;margin-bottom:8px'>◈ How to read this tab</div>
     <div style='color:#475569;font-size:13px;line-height:1.8'>
     This tab gives a complete single-coin picture across price action, momentum, and trend.
-    The <b style='color:#e2e8f0'>price chart</b> (top panel) shows OHLC with an optional 20-day MA.
-    The <b style='color:#e2e8f0'>RSI panel</b> highlights overbought (&gt;70, gold zone) and oversold
+    The <b style='color:#1e293b'>price chart</b> (top panel) shows OHLC with an optional 20-day MA.
+    The <b style='color:#1e293b'>RSI panel</b> highlights overbought (&gt;70, gold zone) and oversold
     (&lt;30, red zone) conditions — readings at the extremes often precede mean-reversion moves.
     RSI between 30–70 is considered neutral territory with no directional edge.
-    The <b style='color:#e2e8f0'>MACD panel</b> shows momentum crossovers: when the MACD line crosses
+    The <b style='color:#1e293b'>MACD panel</b> shows momentum crossovers: when the MACD line crosses
     above the signal line the histogram turns teal (bullish momentum accelerating); crossing below
     turns red (bearish). The histogram height measures the gap between the two lines — a widening gap
     means momentum is strengthening in that direction.
-    The <b style='color:#00f5d4'>Regime State cards</b> beneath the chart summarise the coin's
+    The <b style='color:#0077b6'>Regime State cards</b> beneath the chart summarise the coin's
     <i>current</i> technical posture across six independent signals in one glance — think of it
     as a one-line trading desk briefing.
     </div></div>
@@ -1352,15 +1353,16 @@ with tab3:
                 title=title_cfg(f"◈  {selected_symbol}  ·  {coin_name_full}  ·  {date_range}  ·  {chart_type}"),
                 height=780, xaxis_rangeslider_visible=False, showlegend=True,
                 legend=dict(orientation="h", x=0.01, y=1.02,
-                            bgcolor="rgba(0,0,0,0.5)", bordercolor="#1e2d45", borderwidth=1),
+                            bgcolor="rgba(255,255,255,0.95)", bordercolor="#cbd5e1", borderwidth=1,
+                            font=dict(color="#1e293b", family="JetBrains Mono")),
             )
             for ann in fig_coin.layout.annotations:
                 ann.font.color = MUTED
                 ann.font.size  = 11
-            fig_coin.update_xaxes(gridcolor="#cbd5e1", zerolinecolor="#1a2540",
-                                   tickfont=dict(color=MUTED, family="JetBrains Mono"))
-            fig_coin.update_yaxes(gridcolor="#cbd5e1", zerolinecolor="#1a2540",
-                                   tickfont=dict(color=MUTED, family="JetBrains Mono"))
+            fig_coin.update_xaxes(gridcolor="#cbd5e1", zerolinecolor="#94a3b8",
+                       tickfont=dict(color=MUTED, family="JetBrains Mono"))
+            fig_coin.update_yaxes(gridcolor="#cbd5e1", zerolinecolor="#94a3b8",
+                                tickfont=dict(color=MUTED, family="JetBrains Mono"))
             st.plotly_chart(fig_coin, width='stretch')
 
             # ── Regime State Cards ────────────────────────────────────
@@ -1426,26 +1428,24 @@ with tab4:
         "🔗 Return <span style='color:#00f5d4'>Similarity</span></h2>",
         unsafe_allow_html=True,
     )
-    st.markdown("""
+    st.markdown(f"""
     <div style='background:#ffffff;border:1px solid #cbd5e1;border-radius:10px;
     padding:16px 20px;margin-bottom:20px;font-family:JetBrains Mono,monospace'>
-    <div style='color:#00f5d4;font-size:11px;text-transform:uppercase;
-    letter-spacing:1px;margin-bottom:8px'>◈ What this engine measures</div>
+    <div style='color:#0077b6;font-size:11px;text-transform:uppercase;
+    letter-spacing:1px;margin-bottom:8px'>◈ Cap tier definitions</div>
     <div style='color:#475569;font-size:13px;line-height:1.8'>
-    Ranks every coin by <b style='color:#e2e8f0'>Pearson correlation</b> computed on
-    <b style='color:#e2e8f0'>daily log returns</b>.
-    A high score means the two coins tend to rise and fall <i>together on the same days</i>,
-    regardless of their absolute price difference.
-    If BTC posts +2% on a Monday and SOL posts +1.8% on the same Monday, that co-movement
-    is captured; a coin that simply drifted upward over months without tracking day-to-day
-    moves would not score highly here.
-    <b style='color:#00f5d4'>Same-Dir %</b> adds a non-parametric check: out of all shared
-    trading days, how often did both coins move in the same direction? It catches correlations
-    that Pearson might inflate due to a few large outlier moves.
-    The <b style='color:#e2e8f0'>rolling 90-day chart</b> is the most actionable view: it reveals
-    whether the correlation is structurally stable or regime-dependent. A correlation that collapses
-    to zero during bear markets is far less reliable for hedging or pair-trading than one that
-    holds consistently across bull and bear cycles.
+    Coins are segmented by market capitalisation into five tiers:
+    <b style='color:#e91e8c'>MEGA</b> (&gt;$100B),
+    <b style='color:#7209b7'>LARGE</b> ($10B–$100B),
+    <b style='color:#6930c3'>MID</b> ($1B–$10B),
+    <b style='color:#4361ee'>SMALL</b> ($100M–$1B), and
+    <b style='color:#0096c7'>MICRO</b> (&lt;$100M).
+    The three bar charts show, for the selected return period:
+    how many coins sit in each tier (left), their average return (centre),
+    and their median daily volatility (right).
+    The violin plot below shows the full return distribution — not just averages —
+    revealing skew, outliers, and whether gains are concentrated in a few coins
+    or broadly distributed. Wide violins = many coins at that return level.
     </div></div>
     """, unsafe_allow_html=True)
 
