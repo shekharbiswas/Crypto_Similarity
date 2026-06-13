@@ -1065,11 +1065,11 @@ with tab2:
     letter-spacing:1px;margin-bottom:8px'>◈ Cap tier definitions</div>
     <div style='color:#475569;font-size:13px;line-height:1.8'>
     Coins are segmented by market capitalisation into five tiers:
-    <b style='color:#f72585'>MEGA</b> (&gt;$100B),
+    <b style='color:#e91e8c'>MEGA</b> (&gt;$100B),
     <b style='color:#7209b7'>LARGE</b> ($10B–$100B),
-    <b style='color:#3a0ca3'>MID</b> ($1B–$10B),
+    <b style='color:#6930c3'>MID</b> ($1B–$10B),
     <b style='color:#4361ee'>SMALL</b> ($100M–$1B), and
-    <b style='color:#4cc9f0'>MICRO</b> (&lt;$100M).
+    <b style='color:#0096c7'>MICRO</b> (&lt;$100M).
     The three bar charts show, for the selected return period:
     how many coins sit in each tier (left), their average return (centre),
     and their median daily volatility (right).
@@ -1163,7 +1163,7 @@ with tab2:
             y=sub[period_col].clip(-300, ret_clip_max),
             name=tier.upper(), box_visible=True, meanline_visible=True,
             fillcolor=TIER_COLORS.get(tier, ACCENT), opacity=0.7,
-            line_color="white", points="outliers",
+            line_color="#1e293b", points="outliers",
         ))
 
     fig4.update_layout(
@@ -1280,7 +1280,7 @@ with tab3:
                 fig_coin.add_trace(go.Scatter(
                     x=coin_df["date"], y=coin_df["close"], mode="lines", name="Close",
                     line=dict(color=ACCENT, width=1.8), fill="tozeroy",
-                    fillcolor="rgba(0,245,212,0.06)",
+                    fillcolor="rgba(0,119,182,0.06)",
                     hovertemplate="%{x|%Y-%m-%d}<br>Close: $%{y:,.4f}<extra></extra>",
                 ), row=1, col=1)
             elif chart_type == "Candlestick":
